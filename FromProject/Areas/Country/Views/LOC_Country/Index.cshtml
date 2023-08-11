@@ -1,0 +1,48 @@
+﻿@using System.Data
+@model DataTable
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<div class="container-fluid">
+    <h1 class="text-center">Country List</h1>
+    <div class="me-5 mb-4">
+        <a asp-area="Country" asp-controller="LOC_Country" asp-action="Form" class="btn btn-outline-primary rounded-3">
+            Add
+            </a>
+            </div>
+    <table class="table border border-3 text-center">
+        <tr class="table-secondary">
+            <th>CountryID</th>
+            <th>CountryName</th>
+            <th>CountryCode</th>
+            <th>Created</th>
+            <th>Modified</th>
+            <th>Operations</th>
+        </tr>
+        @foreach (DataRow dataRow in Model.Rows)
+        {
+            
+            <tr>
+                <td>@dataRow["CountryID"]</td>
+                <td>@dataRow["CountryName"]</td>
+                <td>@dataRow["CountryCode"]</td>
+                <td>@dataRow["Created"]</td>
+                <td>@dataRow["Modified"]</td>
+                <td>
+                    <form method="post" asp-area="Country" asp-controller="LOC_Country" asp-action="Delete">
+                     <input type="hidden" name="CountryID" value="@Convert.ToInt32(@dataRow["CountryID"])">
+                    <button type="submit" class="btn btn-outline-danger rounded-3">Delete</button> 
+                    </form>
+                    <form method="post" asp-area="Country" asp-controller="LOC_Country" asp-action="Form">
+                        <input type="hidden" name="CountryID" value="@Convert.ToInt32(@dataRow["CountryID"])">
+                        <input type="hidden" name="CountryName" value="@dataRow["CountryName"]">
+                        <input type="hidden" name="CountryCode" value="@dataRow["CountryCode"]"> 
+                        <button type="submit" class="btn btn-outline-secondary rounded-3">Edit</button>
+                    </form>
+                    
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+

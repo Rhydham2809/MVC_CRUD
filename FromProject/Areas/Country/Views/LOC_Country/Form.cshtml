@@ -1,0 +1,18 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model FromProject.Areas.Country.Models.LOC_CountryModel 
+<form method="post" asp-area="Country" asp-controller="LOC_Country" asp-action="AddEdit">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <input type="text" class="form-control" asp-for="CountryName" placeholder="Enter Country Name" value="@Model.CountryName" aria-label="Country Name">
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" asp-for="CountryCode" placeholder="Enter Country Code" value="@Model.CountryCode" aria-label="Country Name">
+            </div>
+            <div>
+                <input type="hidden" value="@Model.CountryID" name="CountryID" />
+                <button type="submit" class="btn btn-outline-primary rounded-3">Submit</button>
+            </div>
+        </div>
+    </div>
+</form>
